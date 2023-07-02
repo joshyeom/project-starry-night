@@ -1,0 +1,123 @@
+body::-webkit-scrollbar{
+    display: none;
+}
+
+main::-webkit-scrollbar{
+    display: none;
+}
+main{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+    overflow-x: hidden;
+}
+
+
+.stars{
+    width: 80vw;
+    height: 110vh;
+    top: 10%;
+    opacity: 0;
+    animation: opacity 5s ease-in-out forwards;
+}
+
+.dark{
+    width: 80vw;
+    height: 110vh;
+    top: 34%;
+    position: absolute;
+    opacity: 0;
+    animation: opacity 2.5s ease-in-out forwards;
+    animation-delay: 1.5s;
+    z-index: 0;
+}
+
+
+.light{
+    width: 80vw;
+    height: 110vh;
+    top: 0;
+    position: absolute;
+    opacity: 0;
+    animation: bright 2.5s ease-in-out forwards;
+    animation-delay: 2s;
+    z-index: 1;
+}
+
+@keyframes opacity{
+    0%{
+        opacity: 0;
+        top: 3%;
+    }
+    25%{
+        opacity: 1;
+        top: 0%;
+    }
+    100%{
+        opacity: 0;
+        top: 0%;
+    }
+}
+
+@keyframes bright{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+
+.arrows{
+	width: 60px;
+	height: 72px;
+	position: absolute;
+	bottom: 200px;
+    z-index: 2;
+    right: 50%;
+    opacity: 0;
+    animation: bright 2.5s ease-in-out forwards;
+    animation-delay: 2s;
+}
+
+.arrows path {
+	stroke: white;
+	fill: transparent;
+	stroke-width: 1px;	
+	animation: arrow 2s infinite;
+	-webkit-animation: arrow 2s infinite; 
+}
+
+@keyframes arrow
+{
+0% {opacity:0}
+40% {opacity:1}
+80% {opacity:0}
+100% {opacity:0}
+}
+
+@-webkit-keyframes arrow /*Safari and Chrome*/
+{
+0% {opacity:0}
+40% {opacity:1}
+80% {opacity:0}
+100% {opacity:0}
+}
+
+.arrows path.a1 {
+	animation-delay:-1s;
+	-webkit-animation-delay:-1s; /* Safari 和 Chrome */
+}
+
+.arrows path.a2 {
+	animation-delay:-0.5s;
+	-webkit-animation-delay:-0.5s; /* Safari 和 Chrome */
+}
+
+.arrows path.a3 {	
+	animation-delay:0s;
+	-webkit-animation-delay:0s; /* Safari 和 Chrome */
+}
