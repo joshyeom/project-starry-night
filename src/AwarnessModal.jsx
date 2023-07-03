@@ -47,7 +47,6 @@ const AwarnessModal = () => {
           setIsLoaded(!isLoaded);
           setMainVideo(response.data.items[0]);
           setListVideo(response.data.items);
-          console.log(response.data); // 받은 데이터를 콘솔에 출력하거나 원하는 대로 처리합니다.
         } catch (error) {
           console.error(error);
         }

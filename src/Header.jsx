@@ -1,10 +1,11 @@
 import './assets/Header.css'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
-import { isInfoAtom, loginModalAtom, isAwarnessAtom} from './Atom';
+import { isInfoAtom, loginModalAtom, isAwarnessAtom, nickNameAtom} from './Atom';
 import SignIn from './SignIn';
 import AwarnessModal from './AwarnessModal';
+
 
 const Header = () => {
     const navigate = useNavigate();
@@ -12,9 +13,15 @@ const Header = () => {
     const [isInfo , setIsInfo] = useRecoilState(isInfoAtom);
     const [loginModal, setLoginModal] = useRecoilState(loginModalAtom);
     const [isAwarness, setIsAwarness] = useRecoilState(isAwarnessAtom);
+    const [nickName, setNickName] = useRecoilState(nickNameAtom)
 
-
-    const nickName = sessionStorage.getItem('nickName')
+    useEffect(() => {
+        const storedNickName = localStorage.getItem('nickName');
+        if (storedNickName) {
+          setNickName(storedNickName);
+        }
+      }, []);
+    
     const aboutStarryNight = () => {
         setIsModal(!isModal)
     }
@@ -29,7 +36,7 @@ const Header = () => {
     }
 
     const logOutHandler = () => {
-        sessionStorage.removeItem('nickName');
+        localStorage.removeItem('nickName');
         window.location.reload();
     }
 
