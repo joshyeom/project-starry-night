@@ -44,6 +44,7 @@
     <img src="https://img.shields.io/badge/css-1572B6?style=for-the-badge&logo=css3&logoColor=white"> 
     <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"> 
     <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black">
+    <img src="https://img.shields.io/badge/recoil-000000?style=for-the-badge&logo=recoil&logoColor=white">
     <img src="https://img.shields.io/badge/three-000000?style=for-the-badge&logo=three&logoColor=white">
     <img src="https://img.shields.io/badge/Tween-000000?style=for-the-badge&logo=tween&logoColor=white">
 </div>
@@ -139,3 +140,5 @@ CSS 폴더
 #### 23-07-01 헤더 CSS 수정
 
 #### 23-07-02 디렉토리 경로 수정 , vercel 버튼 삭제
+
+#### 23-07-03 폰트수정, 팝업 로긍니 반려 리다이렉트 로그인 채택
