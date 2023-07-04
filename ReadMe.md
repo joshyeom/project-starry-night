@@ -80,7 +80,7 @@
 </div>
 <br/>
 <div style="display: flex; gap:10px;">
-<img width="50%" src="https://velog.velcdn.com/images/josh_yeom/post/14559b51-23c8-4ea7-bd23-636aa6792f37/image.gif">
+<img width="50%" src="https://github.com/joshyeom/project-starry-night/assets/105287510/b95a65d7-9599-4cec-a579-3e37f4a7eede">
 <div height="100%" style="display: flex; align-items: center">해당 이미지는 몽골의 빛 공해 레벨에 따른 밤하늘입니다. 역시 3D요소로써 유저가 드래그하며 밤하늘을 관찰 할 수 있습니다. 국가마다 빛 세기가 다르게 적용되어 별이 보이는 정도가 다릅니다. 오른쪽 아래 배너를 클릭하면 해당 이미지처럼 빛공해 레벨에 따른 별이 보이는 정도를 나타낸 도표를 확인할 수 있습니다.</div>
 </div>
 <br/>
