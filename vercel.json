@@ -13,7 +13,7 @@
       { "src": "/(.*)", "dest": "your-build-directory/index.html" }
     ]
     , 
-    "rewrites":  [
-      {"source": "/(.*)", "destination": "/"}
+    "rewrites": [
+      { "source": "/(.*)", "destination": "/index.html" }
     ]
   }
