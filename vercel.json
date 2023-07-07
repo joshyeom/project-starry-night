@@ -12,4 +12,8 @@
     "routes": [
       { "src": "/(.*)", "dest": "your-build-directory/index.html" }
     ]
+    , 
+    "rewrites":  [
+      {"source": "/(.*)", "destination": "/"}
+    ]
   }
