@@ -1,19 +1,18 @@
 {
-    "version": 2,
-    "builds": [
-      {
-        "src": "/dist*",
-        "use": "@vercel/static-build",
-        "config": {
-          "distDir": "dist"
-        }
+  "version": 2,
+  "builds": [
+    {
+      "src": "/dist*",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
       }
-    ],
-    "routes": [
-      { "src": "/(.*)", "dest": "your-build-directory/index.html" }
-    ]
-    , 
-    "rewrites": [
-      { "source": "/(.*)", "destination": "/index.html" }
-    ]
-  }
+    }
+  ],
+  "routes": [
+    { "src": "/(.*)", "dest": "/dist/index.html" }
+  ],
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}
