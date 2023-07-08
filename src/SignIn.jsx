@@ -4,8 +4,10 @@ import { useState, useEffect } from "react";
 import { isLoginAtom, nickNameAtom, loginModalAtom } from "./Atom";
 import './assets/SignIn.css';
 import { useRecoilState } from "recoil";
+import { useCookies } from 'react-cookie';
 
 function SignIn() {
+  const [cookie, setCookie] = useCookies(['nickName'])
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isSignIn, setIsSignIn] = useState(true);
@@ -19,7 +21,7 @@ function SignIn() {
         if (result.user) {
           setIsLogin(true);
           setNickName(result.user.displayName);
-          localStorage.setItem("nickName", result.user.displayName);
+          setCookie('nickName', 'John Doe', { path: '/' });
         }
       })
       .catch((error) => {
@@ -39,7 +41,7 @@ function SignIn() {
         const regex = /(.*)@/;
         setIsLogin(true);
         setNickName(userCredential.user.email.match(regex)[1]);
-        localStorage.setItem('nickName', userCredential.user.email.match(regex)[1])
+        setCookie('nickName', 'John Doe', { path: '/' });
         setLoginModal(!loginModal);
       })
       .catch((error) => {

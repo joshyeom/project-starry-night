@@ -5,9 +5,10 @@ import { useRecoilState } from 'recoil';
 import { isInfoAtom, loginModalAtom, isAwarnessAtom, nickNameAtom} from './Atom';
 import SignIn from './SignIn';
 import AwarnessModal from './AwarnessModal';
-
+import { useCookies } from 'react-cookie'
 
 const Header = () => {
+    const [cookies] = useCookies(['nickName']);
     const navigate = useNavigate();
     const [isModal , setIsModal] = useState(false);
     const [isInfo , setIsInfo] = useRecoilState(isInfoAtom);
@@ -16,7 +17,7 @@ const Header = () => {
     const [nickName, setNickName] = useRecoilState(nickNameAtom)
 
     useEffect(() => {
-        const storedNickName = localStorage.getItem('nickName');
+        const storedNickName = cookies.nickName;
         if (storedNickName) {
           setNickName(storedNickName);
         }
