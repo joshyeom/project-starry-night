@@ -19,11 +19,6 @@ export const isLoginAtom = atom({
   default: false,
 });
 
-export const nickNameAtom = atom({
-  key: "nickName",
-  default: "",
-});
-
 export const loginModalAtom = atom({
   key: "loginModal",
   default: false,

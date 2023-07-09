@@ -2,27 +2,27 @@ import './assets/Header.css'
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
-import { isInfoAtom, loginModalAtom, isAwarnessAtom, nickNameAtom} from './Atom';
+import { isInfoAtom, loginModalAtom, isAwarnessAtom} from './Atom';
 import SignIn from './SignIn';
 import AwarnessModal from './AwarnessModal';
 import { useCookies } from 'react-cookie'
 
 const Header = () => {
-    const [cookies] = useCookies(['nickName']);
+    const [cookies, setCookies, removeCookies] = useCookies(['nickName']);
     const navigate = useNavigate();
     const [isModal , setIsModal] = useState(false);
     const [isInfo , setIsInfo] = useRecoilState(isInfoAtom);
     const [loginModal, setLoginModal] = useRecoilState(loginModalAtom);
     const [isAwarness, setIsAwarness] = useRecoilState(isAwarnessAtom);
-    const [nickName, setNickName] = useRecoilState(nickNameAtom)
 
     useEffect(() => {
         const storedNickName = cookies.nickName;
         if (storedNickName) {
-          setNickName(storedNickName);
+            setCookies('nickName', storedNickName);
         }
-      }, []);
+    }, [cookies.nickName, setCookies]);
     
+
     const aboutStarryNight = () => {
         setIsModal(!isModal)
     }
@@ -37,7 +37,7 @@ const Header = () => {
     }
 
     const logOutHandler = () => {
-        localStorage.removeItem('nickName');
+        removeCookies('nickName');
         window.location.reload();
     }
 
@@ -58,7 +58,7 @@ const Header = () => {
             )}
                     <span onClick={aboutStarryNight}>About StarryNight</span>
                     <span onClick={AwarnessHandler}>Awarness</span>
-                    {nickName ? <><span>{nickName}</span><span onClick={logOutHandler}>Log Out</span></> : <span onClick={loginModalHandler}>Sign In</span>}
+                    {cookies.nickName ? <><span>{cookies.nickName}</span><span onClick={logOutHandler}>Log Out</span></> : <span onClick={loginModalHandler}>Sign In</span>}
                 </div>
             </header>
             {isModal && (

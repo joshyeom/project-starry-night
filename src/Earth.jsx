@@ -26,7 +26,6 @@ function Earth() {
   const composerRef = useRef(null);
   const buttonsRef = useRef([]);
 
-  console.log(1);
   
   useEffect(() => {
     let animationId = null;

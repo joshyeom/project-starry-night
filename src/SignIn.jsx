@@ -1,7 +1,7 @@
 import { auth } from "./firebase-config";
 import { GoogleAuthProvider, signInWithRedirect, getRedirectResult, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
 import { useState, useEffect } from "react";
-import { isLoginAtom, nickNameAtom, loginModalAtom } from "./Atom";
+import { isLoginAtom, loginModalAtom } from "./Atom";
 import './assets/SignIn.css';
 import { useRecoilState } from "recoil";
 import { useCookies } from 'react-cookie';
@@ -13,15 +13,14 @@ function SignIn() {
   const [isSignIn, setIsSignIn] = useState(true);
   const [isLogin, setIsLogin] = useRecoilState(isLoginAtom);
   const [loginModal, setLoginModal] = useRecoilState(loginModalAtom);
-  const [nickName, setNickName] = useRecoilState(nickNameAtom);
 
   useEffect(() => {
     getRedirectResult(auth)
       .then((result) => {
         if (result.user) {
           setIsLogin(true);
-          setNickName(result.user.displayName);
-          setCookie('nickName', 'John Doe', { path: '/' });
+          setCookie('nickName', result.user.displayName, { path: '/' });
+          setLoginModal(true); // 모달 열기
         }
       })
       .catch((error) => {
@@ -40,8 +39,7 @@ function SignIn() {
       .then((userCredential) => {
         const regex = /(.*)@/;
         setIsLogin(true);
-        setNickName(userCredential.user.email.match(regex)[1]);
-        setCookie('nickName', 'John Doe', { path: '/' });
+        setCookie('nickName', userCredential.user.email.match(regex)[1], { path: '/' });
         setLoginModal(!loginModal);
       })
       .catch((error) => {
