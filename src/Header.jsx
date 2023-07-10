@@ -15,6 +15,18 @@ const Header = () => {
     const [loginModal, setLoginModal] = useRecoilState(loginModalAtom);
     const [isAwarness, setIsAwarness] = useRecoilState(isAwarnessAtom);
 
+
+    
+    useEffect(() => {
+        setLoginModal(true);
+    
+        requestAnimationFrame(() => {
+          setLoginModal(false);
+        });
+      }, [setLoginModal]);
+      
+
+
     useEffect(() => {
         const storedNickName = cookies.nickName;
         if (storedNickName) {
@@ -30,6 +42,7 @@ const Header = () => {
         setLoginModal(!loginModal)
     }
 
+        
 
     const backButtonHandler = () => {
         setIsInfo(!isInfo);
@@ -44,6 +57,8 @@ const Header = () => {
     const AwarnessHandler = () => {
         setIsAwarness(!isAwarness);
     }
+
+
         
     return(
         <>

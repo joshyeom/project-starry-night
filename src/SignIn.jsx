@@ -14,6 +14,7 @@ function SignIn() {
   const [isLogin, setIsLogin] = useRecoilState(isLoginAtom);
   const [loginModal, setLoginModal] = useRecoilState(loginModalAtom);
 
+
   useEffect(() => {
     getRedirectResult(auth)
       .then((result) => {

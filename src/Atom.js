@@ -33,3 +33,8 @@ export const pollutionLevelAtom = atom({
   key: "pollutionLevel",
   default: 0,
 });
+
+export const nickNameAtom = atom({
+  key: "nickName",
+  default: 0,
+});

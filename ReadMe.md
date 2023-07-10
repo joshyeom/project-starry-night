@@ -20,7 +20,7 @@
 
 ---
 
-[Starry Night](https://dist-joshyeom.vercel.app/Earth)
+[Starry Night](https://starry-night-joshyeom.vercel.app/)
 
 <br>
 <br>
@@ -142,3 +142,5 @@ CSS 폴더
 #### 23-07-02 디렉토리 경로 수정 , vercel 버튼 삭제
 
 #### 23-07-03 폰트수정, 팝업 로그인 반려 리다이렉트 로그인 채택
+
+#### 23-07-08 리다이렉트 로그인 성공 / 원인: vercel.json누락
