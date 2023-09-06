@@ -1,11 +1,12 @@
-import './assets/DisplayLevel.css'
+import './DisplayLevel.css'
 import { useState,useEffect,useRef } from 'react'
-import { pollutionLevelAtom } from './Atom';
+import { pollutionLevelAtom } from '../../Atom';
 import { useRecoilState } from 'recoil'; 
+import * as SC from './styled'
 
 export const DisplayLevel = () => {
     const [isImg, setIsImg] = useState(false);
-    const [pollutionLevel, setPollutionLevel] = useRecoilState(pollutionLevelAtom);
+    const [pollutionLevel] = useRecoilState(pollutionLevelAtom);
     const checkLevelElementsRef = useRef([]);
 
     useEffect(() => {
@@ -37,15 +38,15 @@ export const DisplayLevel = () => {
         if (checkLevelElementsRef.current[level - 1]) {
           const elements = Array.from(checkLevelElementsRef.current).reverse();
           const element = elements[level - 1];
-          element.classList.add('hidden');
+          element.style.display = 'none'; // display를 none으로 설정
         }
       };
       
 
       
     return(
-            <div className="displayLevel">
-                <div className="svgContainer" onClick={() => setIsImg(!isImg)}>
+            <SC.DisplayLevel>
+                <SC.SvgContainer onClick={() => setIsImg(!isImg)}>
                     <svg viewBox="0 0 326 73" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="295.712" y="29.6949" width="27.0224" height="19.6526" fill="#010001"/>
                         <rect x="295.712" y="29.6949" width="27.0224" height="19.6526" fill="black" fillOpacity="0.5" className="checkLevel"/>
@@ -69,11 +70,11 @@ export const DisplayLevel = () => {
                         <line x1="1.85595" y1="54.4407" x2="1.85595" y2="59.3898" stroke="white" strokeWidth="1.23729"/>
                         <line x1="322.313" y1="54.4407" x2="322.313" y2="59.3898" stroke="white" strokeWidth="1.23729"/>
                     </svg>
-                </div>
+                </SC.SvgContainer>
                 {isImg &&
                 <img onClick={() => setIsImg(!isImg)} src="./public/stars/level.jpg" alt="level"/>
                 }
-            </div>
+            </SC.DisplayLevel>
     )
 }
 

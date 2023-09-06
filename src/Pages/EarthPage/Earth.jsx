@@ -7,17 +7,16 @@ import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPa
 import * as TWEEN from 'tween'
 import threeSpritetext from "three-spritetext";
 import { useRecoilState } from 'recoil';
-import { cameraPositionState, isInfoAtom, pollutionLevelAtom } from './Atom.js';
+import { cameraPositionState, isInfoAtom, pollutionLevelAtom } from '../../Atom';
 import { useNavigate } from 'react-router-dom';
-import cities from './cities.js'
-import Header from "./Header.jsx";
-
+import cities from '../../cities'
+import Header from "../Header/Header";
 
 function Earth() {
   const canvasRef = useRef(null);
   const [cameraPosition, setCameraPosition] = useRecoilState(cameraPositionState)
   const [isInfo, setIsInfo] = useRecoilState(isInfoAtom);
-  const [pollutionLevel, setPollutionLevel] = useRecoilState(pollutionLevelAtom)
+  const [_, setPollutionLevel] = useRecoilState(pollutionLevelAtom)
   const navigate = useNavigate()
   const rendererRef = useRef(null);
   const sceneRef = useRef(null);

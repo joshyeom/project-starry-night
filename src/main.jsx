@@ -1,11 +1,10 @@
-import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
-import Earth from './Earth.jsx';
-import SignIn from './SignIn.jsx';
-import Info from './Info.jsx'
-import Quote from './Quote.jsx'
+import Earth from './Pages/EarthPage/Earth';
+import SignIn from './Pages/SiginInPage/SignIn';
+import Info from './Pages/InfoPage/Info'
+import Quote from './Pages/QuotePage/Quote'
 
 
 createRoot(document.getElementById('root')).render(

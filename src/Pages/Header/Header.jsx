@@ -1,14 +1,14 @@
-import './assets/Header.css'
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
-import { isInfoAtom, loginModalAtom, isAwarnessAtom, isLoginAtom } from './Atom';
-import SignIn from './SignIn';
-import AwarnessModal from './AwarnessModal';
+import { isInfoAtom, loginModalAtom, isAwarnessAtom, isLoginAtom } from '../../Atom';
+import SignIn from '../SiginInPage/SignIn';
+import AwarnessModal from '../AwarnessModalPage/AwarnessModal';
 import { useCookies } from 'react-cookie';
-import { auth } from "./firebase-config";
-import { GoogleAuthProvider, signInWithRedirect, getRedirectResult, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
-import './assets/SignIn.css';
+import { auth } from "../../firebase-config";
+import {getRedirectResult} from "firebase/auth";
+import '../SiginInPage/SignIn.css';
+import * as SC from './styled'
 
 const Header = () => {
   const [cookies, setCookies, removeCookies] = useCookies(['nickName']);
@@ -44,7 +44,7 @@ const Header = () => {
         }
       })
       .catch((error) => {
-        // 로그인 실패 처리
+        console.log(error)
       });
   }, [isLogin, setCookies]);
 
@@ -70,15 +70,10 @@ const Header = () => {
     setIsAwarness(!isAwarness);
   }
 
-  const handleGoogleSignIn = () => {
-    const provider = new GoogleAuthProvider();
-    signInWithRedirect(auth, provider);
-  };
-
   return (
     <>
-      <header>
-        <div className="container-header">
+      <SC.Header>
+        <SC.Container>
           {isInfo && (
             <>
               <svg onClick={backButtonHandler} width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -89,12 +84,12 @@ const Header = () => {
           <span onClick={aboutStarryNight}>About StarryNight</span>
           <span onClick={AwarnessHandler}>Awarness</span>
           {cookies.nickName ? <><span>{cookies.nickName}</span><span onClick={logOutHandler}>Log Out</span></> : <span onClick={loginModalHandler}>Sign In</span>}
-        </div>
-      </header>
+        </SC.Container>
+      </SC.Header>
       {isModal && (
         <>
-          <div onClick={aboutStarryNight} className='filter'></div>
-          <div className="modal">
+          <SC.Filter onClick={aboutStarryNight}></SC.Filter>
+          <SC.Modal>
             <div className="modal-content">
               <p>Have you ever seen the night sky because you want to see the stars?<br />
                 Have you ever looked up at the sky on an especially difficult day?<br />
@@ -105,20 +100,20 @@ const Header = () => {
                 <br /><br />
                 The Starry Night is a project by Jungho Yeom.
                 Data from <a href="https://www.darksky.org/light-pollution/">Dark Sky</a> and visualization created with Three.js.</p>
-              <button onClick={aboutStarryNight}>X</button>
+              <SC.ModalButton onClick={aboutStarryNight}>X</SC.ModalButton>
             </div>
-          </div>
+          </SC.Modal>
         </>
       )}
       {loginModal && (
         <>
-          <div onClick={loginModalHandler} className='filter'></div>
+          <SC.Filter onClick={loginModalHandler}></SC.Filter>
           <SignIn />
         </>
       )}
       {isAwarness && (
         <>
-          <div onClick={AwarnessHandler} className='filter'></div>
+          <SC.Filter onClick={AwarnessHandler}></SC.Filter>
           <AwarnessModal />
         </>
       )}

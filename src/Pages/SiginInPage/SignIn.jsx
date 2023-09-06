@@ -1,8 +1,8 @@
-import { auth } from "./firebase-config";
+import { auth } from "../../firebase-config";
 import { GoogleAuthProvider, signInWithRedirect, getRedirectResult, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
 import { useState, useEffect } from "react";
-import { isLoginAtom, loginModalAtom } from "./Atom";
-import './assets/SignIn.css';
+import { isLoginAtom, loginModalAtom } from "../../Atom";
+import './SignIn.css';
 import { useRecoilState } from "recoil";
 import { useCookies } from 'react-cookie';
 

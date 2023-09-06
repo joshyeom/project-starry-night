@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './assets/Quote.css';
+import * as SC from './styled'
 
 const Quote = () => {
   const [animationComplete, setAnimationComplete] = useState(false);
@@ -22,15 +22,15 @@ const Quote = () => {
   }, [animationComplete]);
 
   return (
-    <main className="main">
+    <SC.Main>
       <p className={`quote ${animationComplete ? 'animate' : ''}`}>
-        <span>
+        <SC.FirstSpan>
           “For my part I know nothing with any certainty, but the sight of the stars makes me dream.”
-        </span>
+        </SC.FirstSpan>
         <br />
-        <span>— Vincent van Gogh</span>
+        <SC.SecondSpan>— Vincent van Gogh</SC.SecondSpan>
       </p>
-    </main>
+    </SC.Main>
   );
 };
 

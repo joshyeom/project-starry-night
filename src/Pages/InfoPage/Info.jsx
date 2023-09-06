@@ -6,21 +6,19 @@ import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass";
 import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPass";
 import * as TWEEN from 'tween';
 import { useRecoilState } from 'recoil';
-import { useNavigate } from 'react-router-dom';
-import Header from "./Header";
-import DisplayLevel from "./DisplayLevel";
-import { pollutionLevelAtom } from "./Atom";
+import Header from "../Header/Header";
+import DisplayLevel from "../DisplayLevelPage/DisplayLevel";
+import { pollutionLevelAtom } from "../../Atom";
 
 function Info() {
   const canvasRef = useRef(null);
-  const navigate = useNavigate();
   const rendererRef = useRef(null);
   const sceneRef = useRef(null);
   const cameraRef = useRef(null);
   const controlsRef = useRef(null);
   const composerRef = useRef(null);
   const innerMaterialRef = useRef(null); // innerMaterial 참조를 위한 useRef
-  const [pollutionLevel, setPollutionLevel] = useRecoilState(pollutionLevelAtom)
+  const [pollutionLevel] = useRecoilState(pollutionLevelAtom)
 
 
 
