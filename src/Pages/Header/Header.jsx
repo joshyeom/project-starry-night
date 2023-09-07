@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { isInfoAtom, loginModalAtom, isAwarnessAtom, isLoginAtom } from '../../Atom';
@@ -7,17 +7,18 @@ import AwarnessModal from '../AwarnessModalPage/AwarnessModal';
 import { useCookies } from 'react-cookie';
 import { auth } from "../../firebase-config";
 import {getRedirectResult} from "firebase/auth";
+import { AboutStarryNight } from '../../Atom';
 import '../SiginInPage/SignIn.css';
 import * as SC from './styled'
 
 const Header = () => {
   const [cookies, setCookies, removeCookies] = useCookies(['nickName']);
   const navigate = useNavigate();
-  const [isModal, setIsModal] = useState(false);
   const [isInfo, setIsInfo] = useRecoilState(isInfoAtom);
   const [loginModal, setLoginModal] = useRecoilState(loginModalAtom);
   const [isAwarness, setIsAwarness] = useRecoilState(isAwarnessAtom);
   const [isLogin, setIsLogin] = useRecoilState(isLoginAtom);
+  const [_, setIsModal] = useRecoilState(AboutStarryNight)
 
   useEffect(() => {
     setLoginModal(true);
@@ -48,10 +49,7 @@ const Header = () => {
       });
   }, [isLogin, setCookies]);
 
-  const aboutStarryNight = () => {
-    setIsModal(!isModal)
-  }
-
+  
   const loginModalHandler = () => {
     setLoginModal(!loginModal)
   }
@@ -81,30 +79,11 @@ const Header = () => {
               </svg>
             </>
           )}
-          <span onClick={aboutStarryNight}>About StarryNight</span>
+          <span onClick={() => {setIsModal(true)}}>About StarryNight</span>
           <span onClick={AwarnessHandler}>Awarness</span>
           {cookies.nickName ? <><span>{cookies.nickName}</span><span onClick={logOutHandler}>Log Out</span></> : <span onClick={loginModalHandler}>Sign In</span>}
         </SC.Container>
       </SC.Header>
-      {isModal && (
-        <>
-          <SC.Filter onClick={aboutStarryNight}></SC.Filter>
-          <SC.Modal>
-            <div className="modal-content">
-              <p>Have you ever seen the night sky because you want to see the stars?<br />
-                Have you ever looked up at the sky on an especially difficult day?<br />
-                But you rarely see stars Why is it getting harder to see the stars?
-                <br /><br />
-                According to the Ministry of Environment, light pollution refers to a condition in which excessive light due to improper use of artificial lighting or light leaking out of the lighting area to be illuminated interferes with people`&apos;`s healthy and pleasant lives or damages the environment. Although this type of pollution can exist throughout the day, its effects are magnified during the night with the contrast of darkness.The area affected by artificial illumination continues to increase. The Starry night raises awareness of the phenomenon that light pollution is getting worse as urbanization gets worse. This project also tried to show the seriousness of light pollution in each country and the seriousness of each country.
-
-                <br /><br />
-                The Starry Night is a project by Jungho Yeom.
-                Data from <a href="https://www.darksky.org/light-pollution/">Dark Sky</a> and visualization created with Three.js.</p>
-              <SC.ModalButton onClick={aboutStarryNight}>X</SC.ModalButton>
-            </div>
-          </SC.Modal>
-        </>
-      )}
       {loginModal && (
         <>
           <SC.Filter onClick={loginModalHandler}></SC.Filter>

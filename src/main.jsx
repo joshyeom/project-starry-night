@@ -5,7 +5,7 @@ import Earth from './Pages/EarthPage/Earth';
 import SignIn from './Pages/SiginInPage/SignIn';
 import Info from './Pages/InfoPage/Info'
 import Quote from './Pages/QuotePage/Quote'
-
+import { AboutStarryNightPage } from './Pages/AboutStarryNightPage/AboutStarryNightPage';
 
 createRoot(document.getElementById('root')).render(
     <RecoilRoot>
@@ -16,7 +16,9 @@ createRoot(document.getElementById('root')).render(
           <Route path="/signin" element={<SignIn />} />
           <Route path="/Info" element={<Info />} />
         </Routes>
+          <AboutStarryNightPage></AboutStarryNightPage>
       </BrowserRouter>
     </RecoilRoot>,
   document.getElementById('root')
 );
+

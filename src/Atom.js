@@ -38,3 +38,8 @@ export const nickNameAtom = atom({
   key: "nickName",
   default: 0,
 });
+
+export const AboutStarryNight = atom({
+  key: "aboutStarryNight",
+  default: false,
+});
