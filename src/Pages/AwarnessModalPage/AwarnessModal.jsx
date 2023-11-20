@@ -1,4 +1,5 @@
 import axios from 'axios';
+import ReactDOM from 'react-dom';
 import { useState, useEffect } from 'react';
 import { APIKEY } from '../../APIKEY';
 import * as SC from './styled'
@@ -75,7 +76,7 @@ const AwarnessModal = () => {
 
 
 
-    return (
+    return ReactDOM.createPortal(
       <div className="AwarnessModal">
         {isLoading && (
           <SC.SkeletonVideo>
@@ -144,8 +145,8 @@ const AwarnessModal = () => {
               </SC.PaginationButtons>
           </SC.MoreContainer>
         )}
-      </div>
-  );  
+      </div>, document.getElementById('modal-aboutStarryNight')
+    )
 };
 
 export default AwarnessModal;

@@ -18,7 +18,7 @@ const Header = () => {
   const [loginModal, setLoginModal] = useRecoilState(loginModalAtom);
   const [isAwarness, setIsAwarness] = useRecoilState(isAwarnessAtom);
   const [isLogin, setIsLogin] = useRecoilState(isLoginAtom);
-  const [_, setIsModal] = useRecoilState(AboutStarryNight)
+  const [, setIsModal] = useRecoilState(AboutStarryNight)
 
   useEffect(() => {
     setLoginModal(true);

@@ -22,6 +22,6 @@ const [isModal, setIsModal] = useRecoilState(AboutStarryNight);
       </SC.ModalContainer>
     ), 
     
-    document.getElementById('modal-root')
+    document.getElementById('modal-aboutStarryNight')
   );
 }

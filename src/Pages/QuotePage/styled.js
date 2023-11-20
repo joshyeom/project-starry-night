@@ -37,19 +37,29 @@ export const Main = styled.main`
   color: white;
   font-size: 45px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   overflow: hidden;
   font-family: "Georgia", serif;
+  opacity: 0;
+  animation: ${opacityFirst} 3s ease-in-out forwards;
+  @media screen and (max-width: 600px) {
+    font-size: 15px;
+  }
+
+  @media screen and (min-width: 601px) and (max-width: 1024px) {
+    font-size: 25px;
+  }
 `;
 
-export const FirstSpan = styled.span`
-  opacity: 0;
-  animation: ${opacityFirst} 5s ease-in-out forwards;
-`;
+export const Paragraph = styled.p`
+  margin-top: 40px;
+  @media screen and (max-width: 600px) {
+    margin-top: 20px;
+  }
 
-export const SecondSpan = styled.span`
-  opacity: 0;
-  animation: ${opacitySecond} 4s ease-in-out forwards;
-  animation-delay: 1s;
+  @media screen and (min-width: 601px) and (max-width: 1024px) {
+    margin-top: 30px;
+  }
 `;

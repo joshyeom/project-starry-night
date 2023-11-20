@@ -3,33 +3,27 @@ import { useNavigate } from 'react-router-dom';
 import * as SC from './styled'
 
 const Quote = () => {
-  const [animationComplete, setAnimationComplete] = useState(false);
-    const navigate = useNavigate();
-  useEffect(() => {
-    const animationTimeout = setTimeout(() => {
-      setAnimationComplete(true);
-    }, 5500); // 애니메이션의 지속 시간 (여기서는 3초로 가정)
-
-    return () => {
-      clearTimeout(animationTimeout);
-    };
-  }, []);
+  const [flag, setFlag] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    if (animationComplete) {
+    if (flag) {
       navigate('/Earth');
     }
-  }, [animationComplete]);
+  }, [flag]);
+
+  const flagHandler = () => {
+    setFlag(true)
+  }
 
   return (
-    <SC.Main>
-      <p className={`quote ${animationComplete ? 'animate' : ''}`}>
-        <SC.FirstSpan>
+    <SC.Main onAnimationEnd={flagHandler}>
+        <SC.Paragraph>
           “For my part I know nothing with any certainty, but the sight of the stars makes me dream.”
-        </SC.FirstSpan>
-        <br />
-        <SC.SecondSpan>— Vincent van Gogh</SC.SecondSpan>
-      </p>
+          <br />
+          <br />
+          <br />
+        — Vincent van Gogh</SC.Paragraph>
     </SC.Main>
   );
 };
