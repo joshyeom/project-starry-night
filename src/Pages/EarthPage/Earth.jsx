@@ -16,7 +16,7 @@ function Earth() {
   const canvasRef = useRef(null);
   const [cameraPosition, setCameraPosition] = useRecoilState(cameraPositionState)
   const [isInfo, setIsInfo] = useRecoilState(isInfoAtom);
-  const [_, setPollutionLevel] = useRecoilState(pollutionLevelAtom)
+  const [, setPollutionLevel] = useRecoilState(pollutionLevelAtom)
   const navigate = useNavigate()
   const rendererRef = useRef(null);
   const sceneRef = useRef(null);
@@ -51,7 +51,6 @@ function Earth() {
     camera.updateProjectionMatrix();
     cameraRef.current = camera;
     camera.position.copy(cameraPosition)
-
     
     const ambientLight = new THREE.AmbientLight(0x36334b, 0.3);
     scene.add(ambientLight);
@@ -206,7 +205,7 @@ function Earth() {
           );
           
           const duration = 1000;
-          const tween = new TWEEN.Tween(camera.position)
+          new TWEEN.Tween(camera.position)
             .to(targetPosition, duration)
             .easing(TWEEN.Easing.Quadratic.InOut)
             .start()
@@ -216,7 +215,7 @@ function Earth() {
               const zoomTarget = 0;
               const zoomDuration = 1000;
 
-              const zoomTween = new TWEEN.Tween(camera)
+              new TWEEN.Tween(camera)
                 .to({ zoom: zoomTarget }, zoomDuration) // 카메라 거리 조정을 통한 줌 효과
                 .easing(TWEEN.Easing.Quadratic.InOut)
                 .onUpdate(() => {
@@ -238,10 +237,10 @@ function Earth() {
     }
 
     function zoomIn(){
-      const zoomTarget = 1;
+      const zoomTarget = window.innerWidth / window.innerHeight >= 1 ? 1 : window.innerWidth / window.innerHeight;
       const zoomDuration = 4000;
       setTimeout(() => {
-      const zoomTween = new TWEEN.Tween(camera)
+      new TWEEN.Tween(camera)
       .to({ zoom: zoomTarget }, zoomDuration) // 카메라 거리 조정을 통한 줌 효과
       .easing(TWEEN.Easing.Quadratic.InOut)
       .onUpdate(() => {
@@ -266,6 +265,10 @@ function Earth() {
       camera.updateProjectionMatrix();
       renderer.setSize(window.innerWidth, window.innerHeight);
       composer.setSize(window.innerWidth, window.innerHeight);
+      if(camera.aspect >= 1){
+        return
+      }
+      camera.zoom = window.innerWidth / window.innerHeight;
     });
 
 
