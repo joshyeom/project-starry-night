@@ -296,7 +296,7 @@ function Earth() {
   return (
     <>
       <Header></Header>
-      <canvas ref={canvasRef} />;
+      <canvas ref={canvasRef}/>;
     </>
   )
 }

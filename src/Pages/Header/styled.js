@@ -103,9 +103,10 @@ export const Hamburger = styled.button`
 export const ToggleMenu = styled.aside`
   background-color: rgba(255, 255, 255, 0.2);
   width: 50%;
-  height: 100%;
+  height: 100vh;
   position: absolute;
   top: 0;
   left: ${(props) => (props.isClicked ? "50%" : "100%")};
   transition: 0.8s ease-in-out;
+  overflow: hidden;
 `;
