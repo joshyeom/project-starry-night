@@ -14,16 +14,19 @@ export const AnimationHeader = keyframes`
 export const Header = styled.header`
   width: 100%;
   opacity: 0;
+  height: 10%;
   position: absolute;
+  top: 0;
   color: white;
   display: flex;
   justify-content: flex-end;
   animation: ${AnimationHeader} 0.5s ease-in-out forwards;
   animation-delay: 4.5s;
+  z-index: 10;
 `;
 
 export const Container = styled.div`
-  width: 30%;
+  width: 20%;
   display: flex;
   justify-content: space-between;
   margin-right: 5rem;
@@ -61,36 +64,48 @@ export const Filter = styled.div`
   opacity: 0.1;
 `;
 
-// .signInModal{
-//     position: absolute;
-//     z-index: 999;
-//     width: 25%;
-//     height: 70%;
-//     top:50%;
-//     left:50%;
-//     border-radius: 5%;
-//     background-color: rgba(255,255,255,0.9);
-//     transform: translate(-50%, -50%);
-//     display: flex;
-//     justify-content: space-around;
-//     flex-direction: column;
-//     align-items: center;
-// }
+export const Button = styled.button`
+  background-color: transparent;
+  color: white;
+  border: none;
+  display: inline;
+  font-size: 20px;
+  cursor: pointer;
+  @media screen and (max-width: 1500px) {
+    display: none;
+  }
+  @media screen and (max-width: 1730px) {
+    font-size: 15px;
+  }
+`;
 
-// .container-header svg{
-//     position: absolute;
-//     scale: 2;
-//     top: 100%;
-//     left: 3%;
-// }
+export const Hamburger = styled.button`
+  display: none;
+  height: 50%;
+  width: 10%;
+  color: white;
+  border: none;
+  background-color: transparent;
+  position: absolute;
+  margin-right: 30px;
+  z-index: 10;
+  @media screen and (max-width: 1500px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+  }
+  @media screen and (max-width: 600px) {
+    font-size: 20px;
+  }
+`;
 
-// AwarnessModal{
-//     position: absolute;
-//     z-index: 999;
-//     width: 80%;
-//     height: 80%;
-//     top:50%;
-//     left:50%;
-//     transform: translate(-50%, -50%);
-//     background-color: rgba(255,255,255,0.9);
-// }
+export const ToggleMenu = styled.aside`
+  background-color: rgba(255, 255, 255, 0.2);
+  width: 50%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: ${(props) => (props.isClicked ? "50%" : "100%")};
+  transition: 0.8s ease-in-out;
+`;
