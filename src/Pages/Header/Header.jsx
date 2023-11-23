@@ -89,7 +89,7 @@ const Header = () => {
           <SC.Button onClick={AwarnessHandler}>Awarness</SC.Button>
           {cookies.nickName ? <><SC.Button>{cookies.nickName}</SC.Button><SC.Button onClick={logOutHandler}>Log Out</SC.Button></> : <SC.Button onClick={loginModalHandler}>Sign In</SC.Button>}
         </SC.Container>
-        <SC.Hamburger onClick={handleClicked} onTouchEnd={handleClicked}>
+        <SC.Hamburger onClick={handleClicked}>
           <FontAwesomeIcon icon={faBars}/>
         </SC.Hamburger>
       </SC.Header>
