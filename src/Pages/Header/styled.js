@@ -101,7 +101,7 @@ export const Hamburger = styled.button`
 `;
 
 export const ToggleMenu = styled.aside`
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.8);
   width: 50%;
   height: 100vh;
   position: absolute;
