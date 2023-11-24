@@ -12,6 +12,8 @@ import '../SiginInPage/SignIn.css';
 import * as SC from './styled'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { useOthersClick } from '../../../components/useOthersClick';
+
 
 const Header = () => {
   const [cookies, setCookies, removeCookies] = useCookies(['nickName']);
@@ -22,6 +24,13 @@ const Header = () => {
   const [isLogin, setIsLogin] = useRecoilState(isLoginAtom);
   const [, setIsModal] = useRecoilState(AboutStarryNight)
   const [isClicked, setIsClicked] = useState(false);
+  const handleOthersClick = () => {
+    setIsClicked(false)
+    console.log('clicked')
+  };
+
+  const ref = useOthersClick(handleOthersClick);
+  
 
   useEffect(() => {
     setLoginModal(true);
@@ -75,6 +84,7 @@ const Header = () => {
     setIsClicked(!isClicked)
   }
 
+
   return (
     <>
       <SC.Header>
@@ -89,11 +99,11 @@ const Header = () => {
           <SC.Button onClick={AwarnessHandler}>Awarness</SC.Button>
           {cookies.nickName ? <><SC.Button>{cookies.nickName}</SC.Button><SC.Button onClick={logOutHandler}>Log Out</SC.Button></> : <SC.Button onClick={loginModalHandler}>Sign In</SC.Button>}
         </SC.Container>
-        <SC.Hamburger onClick={handleClicked}>
+        <SC.Hamburger onClick={handleClicked} ref={ref}>
           <FontAwesomeIcon icon={faBars}/>
         </SC.Hamburger>
       </SC.Header>
-      <SC.ToggleMenu isClicked={isClicked}></SC.ToggleMenu>
+      <SC.ToggleMenu onClick={(e) => e.stopPropagation()} isClicked={isClicked}></SC.ToggleMenu>
       {loginModal ? 
         <>
           <SC.Filter onClick={loginModalHandler}></SC.Filter>

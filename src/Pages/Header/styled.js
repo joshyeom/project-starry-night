@@ -30,6 +30,9 @@ export const Container = styled.div`
   display: flex;
   justify-content: space-between;
   margin-right: 5rem;
+  @media screen and (max-width: 1500px) {
+    display: none;
+  }
 `;
 
 export const Modal = styled.div`
@@ -71,9 +74,6 @@ export const Button = styled.button`
   display: inline;
   font-size: 20px;
   cursor: pointer;
-  @media screen and (max-width: 1500px) {
-    display: none;
-  }
   @media screen and (max-width: 1730px) {
     font-size: 15px;
   }
