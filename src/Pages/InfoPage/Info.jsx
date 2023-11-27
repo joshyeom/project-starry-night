@@ -17,7 +17,7 @@ function Info() {
   const cameraRef = useRef(null);
   const controlsRef = useRef(null);
   const composerRef = useRef(null);
-  const innerMaterialRef = useRef(null); // innerMaterial 참조를 위한 useRef
+  const innerMaterialRef = useRef(null);
   const [pollutionLevel] = useRecoilState(pollutionLevelAtom)
 
 
@@ -55,7 +55,7 @@ function Info() {
       loadedTexture.minFilter = THREE.LinearFilter;
       loadedTexture.magFilter = THREE.LinearFilter;
 
-      innerMaterialRef.current.emissiveMap = loadedTexture; // innerMaterialRef.current를 사용하여 innerMaterial에 접근
+      innerMaterialRef.current.emissiveMap = loadedTexture; 
       innerMaterialRef.current.needsUpdate = true;
     });
     const innerMaterial = new THREE.MeshLambertMaterial({
@@ -66,7 +66,7 @@ function Info() {
       transparent: true,
       opacity: 0,
     });
-    innerMaterialRef.current = innerMaterial; // innerMaterialRef.current를 할당
+    innerMaterialRef.current = innerMaterial; 
     emissiveTexture.minFilter = THREE.LinearFilter;
     emissiveTexture.magFilter = THREE.LinearFilter;
     const mesh = new THREE.Mesh(geometry, innerMaterial);
@@ -100,6 +100,20 @@ function Info() {
       composer.setSize(window.innerWidth, window.innerHeight);
     }
 
+    function zoomIn(){
+      const zoomTarget = window.innerWidth / window.innerHeight >= 1 ? 1 : window.innerWidth / window.innerHeight;
+      const zoomDuration = 4000;
+      setTimeout(() => {
+      new TWEEN.Tween(camera)
+      .to({ zoom: zoomTarget }, zoomDuration) // 카메라 거리 조정을 통한 줌 효과
+      .easing(TWEEN.Easing.Quadratic.InOut)
+      .onUpdate(() => {
+        camera.updateProjectionMatrix();
+      })
+      .start()
+      }, 500)
+    }
+
     
     function animate() {
       animationId = requestAnimationFrame(animate);
@@ -109,10 +123,10 @@ function Info() {
     }
 
     function opacityHandler() {
-      const opacity = { value: 0 }; // 시작 투명도 값
+      const opacity = { value: 0 }; 
       const opacityDuration = 2000;
       
-      const opacityTween = new TWEEN.Tween(opacity)
+      new TWEEN.Tween(opacity)
         .to({ value: 1 }, opacityDuration)
         .easing(TWEEN.Easing.Quadratic.InOut)
         .onUpdate(() => {
@@ -126,7 +140,7 @@ function Info() {
       opacityHandler();
     },500)
     animate();
-    
+    zoomIn()
 
 
     window.addEventListener("resize", handleResize);

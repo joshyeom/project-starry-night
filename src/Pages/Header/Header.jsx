@@ -103,7 +103,11 @@ const Header = () => {
           <FontAwesomeIcon icon={faBars}/>
         </SC.Hamburger>
       </SC.Header>
-      <SC.ToggleMenu onClick={(e) => e.stopPropagation()} isClicked={isClicked}></SC.ToggleMenu>
+      <SC.ToggleMenu onClick={(e) => e.stopPropagation()} isClicked={isClicked}>
+          <SC.Button onClick={() => {setIsModal(true)}}>About StarryNight</SC.Button>
+          <SC.Button onClick={AwarnessHandler}>Awarness</SC.Button>
+          {cookies.nickName ? <><SC.Button>{cookies.nickName}</SC.Button><SC.Button onClick={logOutHandler}>Log Out</SC.Button></> : <SC.Button onClick={loginModalHandler}>Sign In</SC.Button>}
+      </SC.ToggleMenu>
       {loginModal ? 
         <>
           <SC.Filter onClick={loginModalHandler}></SC.Filter>
