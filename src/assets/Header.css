@@ -16,33 +16,48 @@ header{
 }
 
 .container-header{
-    width: 30%;
+    width: 40%;
     display: flex;
     justify-content: space-between;
-    margin-right: 5rem;
+    margin-right: 2rem;
+   
 }
 
-.modal{
-    position: absolute;
-    z-index: 999;
+
+.container-header button{
+    font-size: 1rem;
     color: white;
-    display: flex;
-    align-items: center;
-    top: 50%;
-    left: 50%;
-    height: 50%;
-    font-size: 100%;
-    background-color: rgba(0,0,0,0.7);
-    transform: translate(-50%, -50%);
-    padding: 0 1rem;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
 }
 
-.modal button{
-    position: absolute;
-    border: none;
-    background-color: rgba(0,0,0,0);
-    top: 0;
-    right: 0;
+@media screen and (max-width: 1000px) {
+    .container-header{
+        width: 40%;
+        display: flex;
+        justify-content: space-between;
+        margin-right: 1rem;
+    }
+    
+
+    .container-header button{
+        font-size: 0.8rem;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .container-header button{
+        font-size: 0.6rem;
+    }
+
+}
+
+@media screen and (max-width: 650px) {
+    .container-header{
+        width: 60%;
+    }
+
 }
 
 .filter{

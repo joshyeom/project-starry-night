@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import { APIKEY } from './APIKEY';
 import './assets/AwarnessModal.css';
 
 const AwarnessModal = () => {
@@ -37,7 +36,7 @@ const AwarnessModal = () => {
         try {
           const response = await axios.get('https://www.googleapis.com/youtube/v3/search', {
             params: {
-              key: APIKEY,
+              key: process.env.YOUTUBE_APIKEY,
               part: 'snippet',
               q: 'light pollution',
               maxResults: 50,
@@ -52,9 +51,9 @@ const AwarnessModal = () => {
         }
       };
   
-      fetchData(); // 컴포넌트가 처음 마운트될 때만 데이터를 가져오도록 호출합니다.
-    }, []); // 빈 배열을 useEffect의 의존성 배열로 전달하여 컴포넌트가 처음 마운트될 때만 호출되도록 합니다.
-    
+      fetchData(); 
+    }, []); 
+
     const isPlayingHandler = () => {
         setIsLoaded(!isLoaded)
         setIsPlaying(!isPlaying)
@@ -96,10 +95,9 @@ const AwarnessModal = () => {
                 <img src={mainVideo.snippet.thumbnails.high.url} alt="mainvideo" />
             </div>
                 <div className="descriptionContainer">
-                    <div>
+                    <div className="content">
                         <h1>{mainVideo.snippet.title}</h1>
                         <p>{mainVideo.snippet.description}</p>
-                        <p></p>
                     </div>
                     <div className="moreButton">
                         <svg onClick={isMoreHandler} width="89" height="22" viewBox="0 0 89 22" xmlns="http://www.w3.org/2000/svg" style={{fill: 'black'}}>

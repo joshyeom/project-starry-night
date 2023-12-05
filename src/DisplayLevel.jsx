@@ -5,7 +5,7 @@ import { useRecoilState } from 'recoil';
 
 export const DisplayLevel = () => {
     const [isImg, setIsImg] = useState(false);
-    const [pollutionLevel, setPollutionLevel] = useRecoilState(pollutionLevelAtom);
+    const [pollutionLevel] = useRecoilState(pollutionLevelAtom);
     const checkLevelElementsRef = useRef([]);
 
     useEffect(() => {

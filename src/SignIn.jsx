@@ -7,7 +7,7 @@ import { useRecoilState } from "recoil";
 import { useCookies } from 'react-cookie';
 
 function SignIn() {
-  const [cookie, setCookie] = useCookies(['nickName'])
+  const [_, setCookie] = useCookies(['nickName'])
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isSignIn, setIsSignIn] = useState(true);
@@ -21,11 +21,11 @@ function SignIn() {
         if (result.user) {
           setIsLogin(true);
           setCookie('nickName', result.user.displayName, { path: '/' });
-          setLoginModal(true); // 모달 열기
+          setLoginModal(true); 
         }
       })
-      .catch((error) => {
-        // 로그인 실패 처리
+      .catch(() => {
+
       });
   }, [isLogin, loginModal]);
 
@@ -43,7 +43,7 @@ function SignIn() {
         setCookie('nickName', userCredential.user.email.match(regex)[1], { path: '/' });
         setLoginModal(!loginModal);
       })
-      .catch((error) => {
+      .catch(() => {
         alert('Please check your E-mail or Password');
       });
   }
@@ -51,12 +51,13 @@ function SignIn() {
   const handleSignUp = (e) => {
     e.preventDefault();
     createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
+      .then(() => {
         alert('Your account is signed up!')
         setIsSignIn(!isSignIn);
       })
       .catch((error) => {
-        alert('Please try again to sign up')
+        console.log(error)
+        alert('This ID is already signed up')
       });
   }
 
@@ -98,7 +99,6 @@ function SignIn() {
               <button className="" type="submit" onClick={handleSignUp}>SignUp & Go to Login</button>
             </div>
           </>
-
         )}
     </div>
   );

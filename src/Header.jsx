@@ -5,15 +5,16 @@ import { useRecoilState } from 'recoil';
 import { isInfoAtom, loginModalAtom, isAwarnessAtom, isLoginAtom } from './Atom';
 import SignIn from './SignIn';
 import AwarnessModal from './AwarnessModal';
+import AboutStarryNight from './AboutStarryNight';
 import { useCookies } from 'react-cookie';
 import { auth } from "./firebase-config";
-import { GoogleAuthProvider, signInWithRedirect, getRedirectResult, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
+import { getRedirectResult} from "firebase/auth";
 import './assets/SignIn.css';
 
 const Header = () => {
   const [cookies, setCookies, removeCookies] = useCookies(['nickName']);
   const navigate = useNavigate();
-  const [isModal, setIsModal] = useState(false);
+  const [isAboutStarryNight, setIsAboutStarryNight] = useState(false);
   const [isInfo, setIsInfo] = useRecoilState(isInfoAtom);
   const [loginModal, setLoginModal] = useRecoilState(loginModalAtom);
   const [isAwarness, setIsAwarness] = useRecoilState(isAwarnessAtom);
@@ -40,19 +41,18 @@ const Header = () => {
         if (result.user) {
           setIsLogin(true);
           setCookies('nickName', result.user.displayName, { path: '/' });
-          // setLoginModal(true); // 모달 열지 않음
         }
       })
       .catch((error) => {
-        // 로그인 실패 처리
+        console.log(error)
       });
   }, [isLogin, setCookies]);
 
-  const aboutStarryNight = () => {
-    setIsModal(!isModal)
+  const handleAboutStarryNight = () => {
+    setIsAboutStarryNight(!isAboutStarryNight)
   }
 
-  const loginModalHandler = () => {
+  const handleLoginModal = () => {
     setLoginModal(!loginModal)
   }
 
@@ -66,14 +66,9 @@ const Header = () => {
     window.location.reload();
   }
 
-  const AwarnessHandler = () => {
+  const handleAwarness = () => {
     setIsAwarness(!isAwarness);
   }
-
-  const handleGoogleSignIn = () => {
-    const provider = new GoogleAuthProvider();
-    signInWithRedirect(auth, provider);
-  };
 
   return (
     <>
@@ -86,39 +81,26 @@ const Header = () => {
               </svg>
             </>
           )}
-          <span onClick={aboutStarryNight}>About StarryNight</span>
-          <span onClick={AwarnessHandler}>Awarness</span>
-          {cookies.nickName ? <><span>{cookies.nickName}</span><span onClick={logOutHandler}>Log Out</span></> : <span onClick={loginModalHandler}>Sign In</span>}
+          <button onClick={handleAboutStarryNight}>About StarryNight</button>
+          <button onClick={handleAwarness}>Awarness</button>
+          {cookies.nickName ? <><button>{cookies.nickName}</button><button onClick={logOutHandler}>Log Out</button></> : <button onClick={handleLoginModal}>Sign In</button>}
         </div>
       </header>
-      {isModal && (
+      {isAboutStarryNight && (
         <>
-          <div onClick={aboutStarryNight} className='filter'></div>
-          <div className="modal">
-            <div className="modal-content">
-              <p>Have you ever seen the night sky because you want to see the stars?<br />
-                Have you ever looked up at the sky on an especially difficult day?<br />
-                But you rarely see stars Why is it getting harder to see the stars?
-                <br /><br />
-                According to the Ministry of Environment, light pollution refers to a condition in which excessive light due to improper use of artificial lighting or light leaking out of the lighting area to be illuminated interferes with people`&apos;`s healthy and pleasant lives or damages the environment. Although this type of pollution can exist throughout the day, its effects are magnified during the night with the contrast of darkness.The area affected by artificial illumination continues to increase. The Starry night raises awareness of the phenomenon that light pollution is getting worse as urbanization gets worse. This project also tried to show the seriousness of light pollution in each country and the seriousness of each country.
-
-                <br /><br />
-                The Starry Night is a project by Jungho Yeom.
-                Data from <a href="https://www.darksky.org/light-pollution/">Dark Sky</a> and visualization created with Three.js.</p>
-              <button onClick={aboutStarryNight}>X</button>
-            </div>
-          </div>
+          <div onClick={handleAboutStarryNight} className='filter'></div>
+          <AboutStarryNight></AboutStarryNight>
         </>
       )}
       {loginModal && (
         <>
-          <div onClick={loginModalHandler} className='filter'></div>
+          <div onClick={handleLoginModal} className='filter'></div>
           <SignIn />
         </>
       )}
       {isAwarness && (
         <>
-          <div onClick={AwarnessHandler} className='filter'></div>
+          <div onClick={handleAwarness} className='filter'></div>
           <AwarnessModal />
         </>
       )}

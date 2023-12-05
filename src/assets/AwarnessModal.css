@@ -88,8 +88,51 @@
     flex-direction: column;
     justify-content: space-between;
 }
+
+.content {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.content p{
+    font-size: 1.5rem;
+}
+
 .descriptionContainer h1{
-    font-size: 4rem;
+    font-size: 3rem;
+    font-weight: 1000;
+}
+
+@media screen and (max-width:1400px){
+    .descriptionContainer h1{
+        font-size: 2.5rem;
+    }
+    .content p{
+        font-size: 1.5rem;
+    }
+}
+@media screen and (max-width:1200px){
+    .descriptionContainer h1{
+        font-size: 2rem;
+    }
+    .content p{
+        font-size: 1rem;
+    }
+}
+@media screen and (max-width:910px){
+    .descriptionContainer h1{
+        font-size: 1.5rem;
+    }
+    .content p{
+        font-size: 0.8rem;
+    }
+}
+@media screen and (max-width:710px){
+    .descriptionContainer h1{
+        font-size: 1rem;
+    }
 }
 
 .descriptionContainer .moreButton{
@@ -99,6 +142,7 @@
 
 .descriptionContainer .moreButton svg{
     cursor: pointer;
+    filter: invert(100%) sepia(0%) saturate(2476%) hue-rotate(86deg) brightness(118%) contrast(119%);
 }
 
 .iframeContainer{
@@ -114,9 +158,10 @@
     position: absolute;
     width: 5%;
     height: 5%;
-    top: 5%;
-    left: 0;
-    cursor: pointer
+    top: 50%;
+    left: 3%;
+    cursor: pointer;
+    filter: invert(100%) sepia(0%) saturate(2476%) hue-rotate(86deg) brightness(118%) contrast(119%);
 }
 
 .iframeContainer iframe{
@@ -136,10 +181,11 @@
 .moreContainer svg{
     position: absolute;
     width: 5%;
-    height: 5%;
-    top: 5%;
-    left: 0;
-    cursor: pointer
+    height: 4%;
+    top: 45%;
+    left: 3%;
+    cursor: pointer;
+    filter: invert(100%) sepia(0%) saturate(2476%) hue-rotate(86deg) brightness(118%) contrast(119%);
 }
 
 .moreContainer .videoContainer{
