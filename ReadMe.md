@@ -20,7 +20,7 @@
 
 ---
 
-[Starry Night](https://starry-night-joshyeom.vercel.app/)
+~~Starry Night~~
 
 <br>
 <br>
